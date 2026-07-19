@@ -1,0 +1,50 @@
+Architecture plan
+
+Product naming
+- The issues do not define a user-facing product name, so the app should avoid introducing a new brand name until one appears in an issue.
+
+Project shape
+- Build a browser-only React single-page app with TypeScript and Tailwind.
+- No backend, database, auth, or server routes are needed. All daily guidance is derived in the browser from a normalized current date.
+- Expected scaffold: Vite + React + TypeScript, Tailwind config, root .env.example, and app source under src/.
+
+Module structure
+- src/main.tsx: React entrypoint.
+- src/App.tsx: top-level page composition.
+- src/components/DailyHeader.tsx: today's date, Five Element, and Trigram summary.
+- src/components/ColorPaletteSection.tsx: element colors and fabric/texture guidance.
+- src/components/MoodSection.tsx: trigram mood/style guidance.
+- src/components/ReadingBlurb.tsx: blended daily reading.
+- src/components/InkWashBackdrop.tsx or src/components/VisualAccent.tsx: decorative ink-wash treatment driven by the day's element and trigram.
+- src/lib/date.ts: date normalization helpers, using a stable local calendar date or explicit test date input.
+- src/lib/elements.ts: Wu Xing element enum/type, deterministic date mapping, and element guidance data.
+- src/lib/trigrams.ts: Bagua trigram enum/type, deterministic date mapping, trigram symbols/motifs, and mood theme data.
+- src/lib/reading.ts: function that blends element and trigram guidance into a short daily blurb.
+- src/types.ts: shared types only if they are used across multiple lib and component modules.
+- src/styles.css: Tailwind layers, base typography, and theme CSS variables.
+
+Shared types
+- Element: "Wood" | "Fire" | "Earth" | "Metal" | "Water".
+- Trigram: "Qian" | "Kun" | "Zhen" | "Xun" | "Kan" | "Li" | "Gen" | "Dui".
+- ElementGuidance: element, palette swatches, fabric/texture note, accent color.
+- TrigramTheme: trigram, symbol/motif, mood axes, short style note.
+- DailyReading: date label, element, trigram, element guidance, trigram theme, blended blurb.
+
+Issue dependencies
+- #1 scaffolds the Vite/React/Tailwind/TypeScript app and base project files.
+- #2 adds the main stacked page layout and placeholder sections.
+- #3 implements deterministic date-to-element logic.
+- #4 implements deterministic date-to-trigram logic.
+- #5 depends on #3 and adds element guidance data plus color/fabric rendering.
+- #6 depends on #4 and adds trigram theme data plus mood rendering.
+- #7 depends on #5 and #6 and combines both systems into the reading blurb.
+- #8 depends on the content sections and applies the ink-wash visual treatment, accent color, and trigram motif.
+- #9 depends on all previous work and covers simulated-date checks, responsive verification, and polish.
+
+Key design decisions
+- Keep date derivation deterministic and simple: normalize to a YYYY-MM-DD calendar date, compute an integer day index from a fixed UTC anchor date, then modulo by 5 for elements and by 8 for trigrams. This satisfies same date => same result without requiring traditional stem-branch accuracy.
+- Keep calculation modules pure and easy to test. Components should consume a prepared DailyReading object rather than duplicating mapping logic.
+- Support simulated dates through pure functions and tests first; add any visible debug/date override only if a later issue explicitly asks for it.
+- Use accessible semantic sections, color swatches with text labels, and adequate contrast. Visual accents should not obscure text.
+- Avoid stereotype-heavy imagery. The visual direction should be modern, calm, and ink-wash inspired through texture, brushlike accents, spacing, and restrained motif usage.
+- Keep all guidance content in typed data maps so later issues can expand copy without changing rendering contracts.
