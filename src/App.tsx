@@ -3,6 +3,7 @@ import { ColorPaletteSection } from "./components/ColorPaletteSection";
 import { DailyHeader } from "./components/DailyHeader";
 import { MoodSection } from "./components/MoodSection";
 import { ReadingBlurb } from "./components/ReadingBlurb";
+import { deriveTodayElement } from "./lib/elements";
 import type { DailyLayoutContent } from "./types";
 
 const dateFormatter = new Intl.DateTimeFormat("en", {
@@ -10,11 +11,12 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
   month: "long",
   day: "numeric",
   year: "numeric",
+  timeZone: "UTC",
 });
 
 const placeholderReading: DailyLayoutContent = {
   dateLabel: dateFormatter.format(new Date()),
-  element: "Wood",
+  element: deriveTodayElement(),
   trigram: "Qian",
   palette: [
     { name: "Leaf green", value: "#3f7d4a" },
