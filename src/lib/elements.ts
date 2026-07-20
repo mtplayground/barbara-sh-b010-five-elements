@@ -1,6 +1,10 @@
-import { getUtcDayIndex, positiveModulo } from "./date";
+import { getAppDayIndex, getCalendarDayIndex, positiveModulo } from "./date";
 
-const ELEMENT_ANCHOR_DAY = Date.UTC(2024, 0, 1) / (24 * 60 * 60 * 1000);
+const ELEMENT_ANCHOR_DAY = getCalendarDayIndex({
+  year: 2024,
+  month: 1,
+  day: 1,
+});
 
 export const WU_XING_ELEMENTS = [
   "Wood",
@@ -78,7 +82,7 @@ export const ELEMENT_GUIDANCE: Record<WuXingElement, ElementGuidance> = {
 
 export function deriveElementFromDate(date: Date): WuXingElement {
   const cycleIndex = positiveModulo(
-    getUtcDayIndex(date, "a Five Element") - ELEMENT_ANCHOR_DAY,
+    getAppDayIndex(date, "a Five Element") - ELEMENT_ANCHOR_DAY,
     WU_XING_ELEMENTS.length,
   );
 

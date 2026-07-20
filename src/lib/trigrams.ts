@@ -1,6 +1,10 @@
-import { getUtcDayIndex, positiveModulo } from "./date";
+import { getAppDayIndex, getCalendarDayIndex, positiveModulo } from "./date";
 
-const TRIGRAM_ANCHOR_DAY = Date.UTC(2024, 0, 1) / (24 * 60 * 60 * 1000);
+const TRIGRAM_ANCHOR_DAY = getCalendarDayIndex({
+  year: 2024,
+  month: 1,
+  day: 1,
+});
 
 export const BAGUA_TRIGRAMS = [
   "Qian",
@@ -139,7 +143,7 @@ export const TRIGRAM_THEMES: Record<BaguaTrigram, TrigramTheme> = {
 
 export function deriveTrigramFromDate(date: Date): BaguaTrigram {
   const cycleIndex = positiveModulo(
-    getUtcDayIndex(date, "a Trigram") - TRIGRAM_ANCHOR_DAY,
+    getAppDayIndex(date, "a Trigram") - TRIGRAM_ANCHOR_DAY,
     BAGUA_TRIGRAMS.length,
   );
 
