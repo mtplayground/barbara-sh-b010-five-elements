@@ -22,7 +22,7 @@ export function ReadingBlurb({ element, trigram, text }: ReadingBlurbProps) {
             Blended note
           </h2>
         </div>
-        <blockquote className="rounded-lg border border-[color:var(--daily-accent)] bg-white/70 p-6 font-display text-2xl leading-10 text-ink-950">
+        <blockquote className="rounded-lg border border-[color:var(--daily-accent)] bg-white/70 p-5 font-display text-xl leading-8 text-ink-950 sm:p-6 sm:text-2xl sm:leading-10">
           {text}
         </blockquote>
       </div>

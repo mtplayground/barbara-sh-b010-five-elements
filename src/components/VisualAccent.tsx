@@ -9,7 +9,7 @@ export function VisualAccent({ accentColor, motif }: VisualAccentProps) {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute right-0 top-0 h-72 w-72 overflow-hidden sm:h-96 sm:w-96"
+      className="pointer-events-none absolute -right-24 top-2 h-56 w-56 overflow-hidden opacity-40 sm:right-0 sm:top-0 sm:h-96 sm:w-96 sm:opacity-100"
     >
       <svg
         className="h-full w-full"
