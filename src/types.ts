@@ -1,4 +1,5 @@
 import type { WuXingElement } from "./lib/elements";
+import type { BaguaTrigram } from "./lib/trigrams";
 
 export type PaletteSwatch = {
   name: string;
@@ -8,7 +9,7 @@ export type PaletteSwatch = {
 export type DailyLayoutContent = {
   dateLabel: string;
   element: WuXingElement;
-  trigram: string;
+  trigram: BaguaTrigram;
   palette: PaletteSwatch[];
   fabricNote: string;
   moodTitle: string;

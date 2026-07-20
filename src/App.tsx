@@ -4,6 +4,7 @@ import { DailyHeader } from "./components/DailyHeader";
 import { MoodSection } from "./components/MoodSection";
 import { ReadingBlurb } from "./components/ReadingBlurb";
 import { deriveTodayElement } from "./lib/elements";
+import { deriveTodayTrigram } from "./lib/trigrams";
 import type { DailyLayoutContent } from "./types";
 
 const dateFormatter = new Intl.DateTimeFormat("en", {
@@ -17,7 +18,7 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
 const placeholderReading: DailyLayoutContent = {
   dateLabel: dateFormatter.format(new Date()),
   element: deriveTodayElement(),
-  trigram: "Qian",
+  trigram: deriveTodayTrigram(),
   palette: [
     { name: "Leaf green", value: "#3f7d4a" },
     { name: "Soft moss", value: "#8ea982" },
