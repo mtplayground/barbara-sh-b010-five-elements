@@ -4,69 +4,40 @@ import { DailyHeader } from "./components/DailyHeader";
 import { MoodSection } from "./components/MoodSection";
 import { ReadingBlurb } from "./components/ReadingBlurb";
 import { VisualAccent } from "./components/VisualAccent";
-import { deriveTodayElement, getElementGuidance } from "./lib/elements";
-import { createDailyReadingBlurb } from "./lib/reading";
-import {
-  deriveTodayTrigram,
-  getTrigramMotif,
-  getTrigramTheme,
-} from "./lib/trigrams";
-import type { DailyLayoutContent } from "./types";
+import { createDailyLayoutContent } from "./lib/daily";
 
-const dateFormatter = new Intl.DateTimeFormat("en", {
-  weekday: "long",
-  month: "long",
-  day: "numeric",
-  year: "numeric",
-  timeZone: "UTC",
-});
-
-const todayElement = deriveTodayElement();
-const elementGuidance = getElementGuidance(todayElement);
-const todayTrigram = deriveTodayTrigram();
-const trigramTheme = getTrigramTheme(todayTrigram);
-const trigramMotif = getTrigramMotif(todayTrigram);
-const accentColor = elementGuidance.palette[0].value;
-
-const placeholderReading: DailyLayoutContent = {
-  dateLabel: dateFormatter.format(new Date()),
-  element: todayElement,
-  trigram: todayTrigram,
-  palette: elementGuidance.palette,
-  fabricNote: elementGuidance.fabricNote,
-  moodTitle: trigramTheme.title,
-  moodDescription: trigramTheme.description,
-  moodAxes: trigramTheme.axes,
-  blurb: createDailyReadingBlurb(elementGuidance, trigramTheme),
-};
+const dailyReading = createDailyLayoutContent();
 
 export default function App() {
   return (
-    <BaseLayout accentColor={accentColor}>
-      <VisualAccent accentColor={accentColor} motif={trigramMotif} />
+    <BaseLayout accentColor={dailyReading.accentColor}>
+      <VisualAccent
+        accentColor={dailyReading.accentColor}
+        motif={dailyReading.trigramMotif}
+      />
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col px-5 py-8 sm:px-8 sm:py-12 lg:px-10">
         <DailyHeader
-          dateLabel={placeholderReading.dateLabel}
-          element={placeholderReading.element}
-          trigram={placeholderReading.trigram}
-          trigramSymbol={trigramMotif.symbol}
+          dateLabel={dailyReading.dateLabel}
+          element={dailyReading.element}
+          trigram={dailyReading.trigram}
+          trigramSymbol={dailyReading.trigramSymbol}
         />
         <div className="mt-10 divide-y divide-ink-950/10 border-y border-ink-950/10">
           <ColorPaletteSection
-            element={placeholderReading.element}
-            palette={placeholderReading.palette}
-            fabricNote={placeholderReading.fabricNote}
+            element={dailyReading.element}
+            palette={dailyReading.palette}
+            fabricNote={dailyReading.fabricNote}
           />
           <MoodSection
-            trigram={placeholderReading.trigram}
-            title={placeholderReading.moodTitle}
-            description={placeholderReading.moodDescription}
-            axes={placeholderReading.moodAxes}
+            trigram={dailyReading.trigram}
+            title={dailyReading.moodTitle}
+            description={dailyReading.moodDescription}
+            axes={dailyReading.moodAxes}
           />
           <ReadingBlurb
-            element={placeholderReading.element}
-            trigram={placeholderReading.trigram}
-            text={placeholderReading.blurb}
+            element={dailyReading.element}
+            trigram={dailyReading.trigram}
+            text={dailyReading.blurb}
           />
         </div>
       </div>

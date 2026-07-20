@@ -1,5 +1,9 @@
 import type { WuXingElement } from "./lib/elements";
-import type { BaguaTrigram, TrigramMoodAxis } from "./lib/trigrams";
+import type {
+  BaguaTrigram,
+  TrigramMoodAxis,
+  TrigramMotif,
+} from "./lib/trigrams";
 
 export type PaletteSwatch = {
   name: string;
@@ -16,4 +20,7 @@ export type DailyLayoutContent = {
   moodDescription: string;
   moodAxes: TrigramMoodAxis[];
   blurb: string;
+  accentColor: string;
+  trigramMotif: TrigramMotif;
+  trigramSymbol: string;
 };
