@@ -1,11 +1,14 @@
+import type { WuXingElement } from "../lib/elements";
 import type { PaletteSwatch } from "../types";
 
 type ColorPaletteSectionProps = {
+  element: WuXingElement;
   palette: PaletteSwatch[];
   fabricNote: string;
 };
 
 export function ColorPaletteSection({
+  element,
   palette,
   fabricNote,
 }: ColorPaletteSectionProps) {
@@ -14,7 +17,7 @@ export function ColorPaletteSection({
       <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cinnabar">
-            Color palette
+            {element} palette
           </p>
           <h2
             id="color-palette-title"

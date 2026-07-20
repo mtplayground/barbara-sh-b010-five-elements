@@ -3,7 +3,7 @@ import { ColorPaletteSection } from "./components/ColorPaletteSection";
 import { DailyHeader } from "./components/DailyHeader";
 import { MoodSection } from "./components/MoodSection";
 import { ReadingBlurb } from "./components/ReadingBlurb";
-import { deriveTodayElement } from "./lib/elements";
+import { deriveTodayElement, getElementGuidance } from "./lib/elements";
 import { deriveTodayTrigram } from "./lib/trigrams";
 import type { DailyLayoutContent } from "./types";
 
@@ -15,17 +15,15 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
   timeZone: "UTC",
 });
 
+const todayElement = deriveTodayElement();
+const elementGuidance = getElementGuidance(todayElement);
+
 const placeholderReading: DailyLayoutContent = {
   dateLabel: dateFormatter.format(new Date()),
-  element: deriveTodayElement(),
+  element: todayElement,
   trigram: deriveTodayTrigram(),
-  palette: [
-    { name: "Leaf green", value: "#3f7d4a" },
-    { name: "Soft moss", value: "#8ea982" },
-    { name: "Ink pine", value: "#1e3d32" },
-  ],
-  fabricNote:
-    "Placeholder fabric guidance will describe the day's textures and silhouette.",
+  palette: elementGuidance.palette,
+  fabricNote: elementGuidance.fabricNote,
   moodTitle: "Structured and fresh",
   moodDescription:
     "Placeholder mood guidance will translate the day's Trigram into a wearable tone.",
@@ -44,6 +42,7 @@ export default function App() {
         />
         <div className="mt-10 divide-y divide-ink-950/10 border-y border-ink-950/10">
           <ColorPaletteSection
+            element={placeholderReading.element}
             palette={placeholderReading.palette}
             fabricNote={placeholderReading.fabricNote}
           />
