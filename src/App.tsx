@@ -4,7 +4,7 @@ import { DailyHeader } from "./components/DailyHeader";
 import { MoodSection } from "./components/MoodSection";
 import { ReadingBlurb } from "./components/ReadingBlurb";
 import { deriveTodayElement, getElementGuidance } from "./lib/elements";
-import { deriveTodayTrigram } from "./lib/trigrams";
+import { deriveTodayTrigram, getTrigramTheme } from "./lib/trigrams";
 import type { DailyLayoutContent } from "./types";
 
 const dateFormatter = new Intl.DateTimeFormat("en", {
@@ -17,16 +17,18 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
 
 const todayElement = deriveTodayElement();
 const elementGuidance = getElementGuidance(todayElement);
+const todayTrigram = deriveTodayTrigram();
+const trigramTheme = getTrigramTheme(todayTrigram);
 
 const placeholderReading: DailyLayoutContent = {
   dateLabel: dateFormatter.format(new Date()),
   element: todayElement,
-  trigram: deriveTodayTrigram(),
+  trigram: todayTrigram,
   palette: elementGuidance.palette,
   fabricNote: elementGuidance.fabricNote,
-  moodTitle: "Structured and fresh",
-  moodDescription:
-    "Placeholder mood guidance will translate the day's Trigram into a wearable tone.",
+  moodTitle: trigramTheme.title,
+  moodDescription: trigramTheme.description,
+  moodAxes: trigramTheme.axes,
   blurb:
     "A short blended reading will connect the day's Element and Trigram once the date logic and guidance maps are added.",
 };
@@ -47,8 +49,10 @@ export default function App() {
             fabricNote={placeholderReading.fabricNote}
           />
           <MoodSection
+            trigram={placeholderReading.trigram}
             title={placeholderReading.moodTitle}
             description={placeholderReading.moodDescription}
+            axes={placeholderReading.moodAxes}
           />
           <ReadingBlurb text={placeholderReading.blurb} />
         </div>
