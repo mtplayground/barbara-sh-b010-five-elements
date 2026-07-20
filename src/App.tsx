@@ -4,6 +4,7 @@ import { DailyHeader } from "./components/DailyHeader";
 import { MoodSection } from "./components/MoodSection";
 import { ReadingBlurb } from "./components/ReadingBlurb";
 import { deriveTodayElement, getElementGuidance } from "./lib/elements";
+import { createDailyReadingBlurb } from "./lib/reading";
 import { deriveTodayTrigram, getTrigramTheme } from "./lib/trigrams";
 import type { DailyLayoutContent } from "./types";
 
@@ -29,8 +30,7 @@ const placeholderReading: DailyLayoutContent = {
   moodTitle: trigramTheme.title,
   moodDescription: trigramTheme.description,
   moodAxes: trigramTheme.axes,
-  blurb:
-    "A short blended reading will connect the day's Element and Trigram once the date logic and guidance maps are added.",
+  blurb: createDailyReadingBlurb(elementGuidance, trigramTheme),
 };
 
 export default function App() {
@@ -54,7 +54,11 @@ export default function App() {
             description={placeholderReading.moodDescription}
             axes={placeholderReading.moodAxes}
           />
-          <ReadingBlurb text={placeholderReading.blurb} />
+          <ReadingBlurb
+            element={placeholderReading.element}
+            trigram={placeholderReading.trigram}
+            text={placeholderReading.blurb}
+          />
         </div>
       </div>
     </BaseLayout>
