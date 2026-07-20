@@ -17,7 +17,7 @@ export function MoodSection({
     <section aria-labelledby="mood-title" className="py-8 sm:py-10">
       <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cinnabar">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--daily-accent)]">
             {trigram} mood
           </p>
           <h2 id="mood-title" className="mt-3 font-display text-3xl text-ink-950">

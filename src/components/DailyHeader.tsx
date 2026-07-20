@@ -2,13 +2,19 @@ type DailyHeaderProps = {
   dateLabel: string;
   element: string;
   trigram: string;
+  trigramSymbol: string;
 };
 
-export function DailyHeader({ dateLabel, element, trigram }: DailyHeaderProps) {
+export function DailyHeader({
+  dateLabel,
+  element,
+  trigram,
+  trigramSymbol,
+}: DailyHeaderProps) {
   return (
     <header className="grid gap-8 py-10 sm:py-14 lg:grid-cols-[1fr_auto] lg:items-end">
       <div className="max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cinnabar">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--daily-accent)]">
           {dateLabel}
         </p>
         <h1 className="mt-4 font-display text-4xl leading-tight text-ink-950 sm:text-5xl">
@@ -26,7 +32,12 @@ export function DailyHeader({ dateLabel, element, trigram }: DailyHeaderProps) {
           <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-600">
             Trigram
           </dt>
-          <dd className="mt-2 font-display text-3xl text-ink-950">{trigram}</dd>
+          <dd className="mt-2 flex items-center gap-3 font-display text-3xl text-ink-950">
+            <span className="text-[var(--daily-accent)]" aria-hidden="true">
+              {trigramSymbol}
+            </span>
+            {trigram}
+          </dd>
         </div>
       </dl>
     </header>
