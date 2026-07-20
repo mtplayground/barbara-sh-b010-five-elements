@@ -12,7 +12,7 @@ export function ReadingBlurb({ element, trigram, text }: ReadingBlurbProps) {
     <section aria-labelledby="reading-title" className="py-8 sm:py-10">
       <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cinnabar">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--daily-accent)]">
             {element} + {trigram}
           </p>
           <h2
@@ -22,7 +22,7 @@ export function ReadingBlurb({ element, trigram, text }: ReadingBlurbProps) {
             Blended note
           </h2>
         </div>
-        <blockquote className="rounded-lg border border-cinnabar/20 bg-white/70 p-6 font-display text-2xl leading-10 text-ink-950">
+        <blockquote className="rounded-lg border border-[color:var(--daily-accent)] bg-white/70 p-6 font-display text-2xl leading-10 text-ink-950">
           {text}
         </blockquote>
       </div>

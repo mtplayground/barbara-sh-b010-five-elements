@@ -16,7 +16,7 @@ export function ColorPaletteSection({
     <section aria-labelledby="color-palette-title" className="py-8 sm:py-10">
       <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cinnabar">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--daily-accent)]">
             {element} palette
           </p>
           <h2

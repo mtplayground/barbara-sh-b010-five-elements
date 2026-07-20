@@ -30,6 +30,37 @@ body {
   margin: 0;
 }
 
+.daily-shell {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--daily-accent) 10%, transparent),
+      transparent 36%
+    ),
+    #fbfaf7;
+}
+
+.daily-shell::before {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, rgb(22 20 18 / 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgb(22 20 18 / 0.025) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(180deg, black, transparent 72%);
+}
+
+.page-surface {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--daily-accent) 8%, #fbfaf7),
+      #fbfaf7 34rem
+    );
+}
+
 button,
 input,
 textarea,

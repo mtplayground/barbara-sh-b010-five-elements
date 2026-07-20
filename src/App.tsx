@@ -3,9 +3,14 @@ import { ColorPaletteSection } from "./components/ColorPaletteSection";
 import { DailyHeader } from "./components/DailyHeader";
 import { MoodSection } from "./components/MoodSection";
 import { ReadingBlurb } from "./components/ReadingBlurb";
+import { VisualAccent } from "./components/VisualAccent";
 import { deriveTodayElement, getElementGuidance } from "./lib/elements";
 import { createDailyReadingBlurb } from "./lib/reading";
-import { deriveTodayTrigram, getTrigramTheme } from "./lib/trigrams";
+import {
+  deriveTodayTrigram,
+  getTrigramMotif,
+  getTrigramTheme,
+} from "./lib/trigrams";
 import type { DailyLayoutContent } from "./types";
 
 const dateFormatter = new Intl.DateTimeFormat("en", {
@@ -20,6 +25,8 @@ const todayElement = deriveTodayElement();
 const elementGuidance = getElementGuidance(todayElement);
 const todayTrigram = deriveTodayTrigram();
 const trigramTheme = getTrigramTheme(todayTrigram);
+const trigramMotif = getTrigramMotif(todayTrigram);
+const accentColor = elementGuidance.palette[0].value;
 
 const placeholderReading: DailyLayoutContent = {
   dateLabel: dateFormatter.format(new Date()),
@@ -35,12 +42,14 @@ const placeholderReading: DailyLayoutContent = {
 
 export default function App() {
   return (
-    <BaseLayout>
-      <div className="mx-auto flex w-full max-w-5xl flex-col px-5 py-8 sm:px-8 sm:py-12 lg:px-10">
+    <BaseLayout accentColor={accentColor}>
+      <VisualAccent accentColor={accentColor} motif={trigramMotif} />
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col px-5 py-8 sm:px-8 sm:py-12 lg:px-10">
         <DailyHeader
           dateLabel={placeholderReading.dateLabel}
           element={placeholderReading.element}
           trigram={placeholderReading.trigram}
+          trigramSymbol={trigramMotif.symbol}
         />
         <div className="mt-10 divide-y divide-ink-950/10 border-y border-ink-950/10">
           <ColorPaletteSection

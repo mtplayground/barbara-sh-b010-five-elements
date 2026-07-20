@@ -27,6 +27,25 @@ export type TrigramTheme = {
   axes: TrigramMoodAxis[];
 };
 
+export type TrigramLine = "solid" | "broken";
+
+export type TrigramMotif = {
+  trigram: BaguaTrigram;
+  symbol: string;
+  lines: [TrigramLine, TrigramLine, TrigramLine];
+};
+
+export const TRIGRAM_MOTIFS: Record<BaguaTrigram, TrigramMotif> = {
+  Qian: { trigram: "Qian", symbol: "☰", lines: ["solid", "solid", "solid"] },
+  Kun: { trigram: "Kun", symbol: "☷", lines: ["broken", "broken", "broken"] },
+  Zhen: { trigram: "Zhen", symbol: "☳", lines: ["broken", "broken", "solid"] },
+  Xun: { trigram: "Xun", symbol: "☴", lines: ["solid", "solid", "broken"] },
+  Kan: { trigram: "Kan", symbol: "☵", lines: ["broken", "solid", "broken"] },
+  Li: { trigram: "Li", symbol: "☲", lines: ["solid", "broken", "solid"] },
+  Gen: { trigram: "Gen", symbol: "☶", lines: ["solid", "broken", "broken"] },
+  Dui: { trigram: "Dui", symbol: "☱", lines: ["broken", "solid", "solid"] },
+};
+
 export const TRIGRAM_THEMES: Record<BaguaTrigram, TrigramTheme> = {
   Qian: {
     trigram: "Qian",
@@ -133,4 +152,8 @@ export function deriveTodayTrigram(): BaguaTrigram {
 
 export function getTrigramTheme(trigram: BaguaTrigram): TrigramTheme {
   return TRIGRAM_THEMES[trigram];
+}
+
+export function getTrigramMotif(trigram: BaguaTrigram): TrigramMotif {
+  return TRIGRAM_MOTIFS[trigram];
 }
