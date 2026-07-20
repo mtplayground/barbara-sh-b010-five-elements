@@ -1,14 +1,19 @@
+import type { WuXingElement } from "../lib/elements";
+import type { BaguaTrigram } from "../lib/trigrams";
+
 type ReadingBlurbProps = {
+  element: WuXingElement;
+  trigram: BaguaTrigram;
   text: string;
 };
 
-export function ReadingBlurb({ text }: ReadingBlurbProps) {
+export function ReadingBlurb({ element, trigram, text }: ReadingBlurbProps) {
   return (
     <section aria-labelledby="reading-title" className="py-8 sm:py-10">
       <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cinnabar">
-            Daily reading
+            {element} + {trigram}
           </p>
           <h2
             id="reading-title"
